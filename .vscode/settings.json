@@ -1,10 +1,11 @@
 {
-	"cSpell.words": [
-		"corejs",
-		"VDOM",
-		"vnode"
-	],
-	"editor.formatOnSave": true,
+  "cSpell.words": [
+    "corejs",
+    "unkeyed",
+    "VDOM",
+    "vnode"
+  ],
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
