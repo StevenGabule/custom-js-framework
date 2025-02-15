@@ -13,6 +13,7 @@ export const logger: Middleware<any> = (store) => (next) => (action) => {
 
 export const thunk: Middleware<any> = (store) => (next) => (action) => {
   if (typeof action === "function") {
+    // @ts-ignore
     return action(store.dispatch, store.getState);
   }
   return next(action);
