@@ -38,6 +38,7 @@ export class Application {
     if (options.routes) {
       this.router = new Router({
         routes: options.routes,
+        // @ts-ignore
         mode: "history",
       });
     }
@@ -152,7 +153,7 @@ export class Application {
       throw new Error(`Container ${container} not found`);
     }
 
-    // Create root component instance
+    // Create root component instance with router
     // @ts-ignore
     this.rootComponent = new RootComponentClass({
       router: this.router,
