@@ -1,35 +1,16 @@
 import { ComponentProps, ComponentState } from "./types";
 
-export abstract class Component {
+export abstract class BaseComponent {
   protected props: ComponentProps;
   protected state: ComponentState;
-  private _children: Set<Component> = new Set();
-  private _parent: Component | null = null;
+  private _children: Set<BaseComponent> = new Set();
+  private _parent: BaseComponent | null = null;
   private _isUpdating: boolean = false;
   private _container: Element | null = null;
 
   constructor(props: ComponentProps = {}) {
     this.props = props;
     this.state = {};
-  }
-
-  // Child management
-  public addChild(child: Component): void {
-    this._children.add(child);
-    child._parent = this;
-  }
-
-  public removeChild(child: Component): void {
-    this._children.delete(child);
-    child._parent = null;
-  }
-
-  public getChildren(): Component[] {
-    return Array.from(this._children);
-  }
-
-  public getParent(): Component | null {
-    return this._parent;
   }
 
   // Lifecycle methods
@@ -42,13 +23,31 @@ export abstract class Component {
   public beforeUnmount?(): void;
   public unmounted?(): void;
 
+  // Child management
+  public addChild(child: BaseComponent): void {
+    this._children.add(child);
+    child._parent = this;
+  }
+
+  public removeChild(child: BaseComponent): void {
+    this._children.delete(child);
+    child._parent = null;
+  }
+
+  public getChildren(): BaseComponent[] {
+    return Array.from(this._children);
+  }
+
+  public getParent(): BaseComponent | null {
+    return this._parent;
+  }
+
   // State management
   protected setState(newState: Partial<ComponentState>): void {
     this.state = { ...this.state, ...newState };
     this.forceUpdate();
   }
 
-  // Update methods
   public async forceUpdate(): Promise<void> {
     if (this._isUpdating) return;
 

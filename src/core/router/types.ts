@@ -26,10 +26,6 @@ export interface Route {
   children?: Route[];
   redirect?: string;
   meta?: Record<string, any>;
-  beforeEnter?: (
-    to: RouteLocation,
-    from: RouteLocation | null
-  ) => Promise<boolean> | boolean;
 }
 
 export interface RouterOptions {
