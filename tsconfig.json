@@ -16,5 +16,8 @@
       "node",
       "jest"
     ]
-  }
+  },
+  "jsx": "preserve",
+  "jsxFactory": "createElement",
+  "jsxFragmentFactory": "Fragment"
 }
